@@ -1,0 +1,11 @@
+Assume that you have a Social Network that support
+1- Textual Posts, Photo Posts, and Video Posts
+2- Each Post can have comments
+3- Each Comment can have replies.
+Tasks:
+1) Design the database
+2) Develop the required code to:
+2.1) Display user timeline
+2.2) Display single post including comments and replies
+3) Try to accomplish the task using TDD approach
+4) Try to use Laravel Framework

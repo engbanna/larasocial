@@ -51,6 +51,8 @@ class PostTest extends TestCase
 
     }
 
+
+
     /** @test */
     public function each_post_can_have_comments_by_repository()
     {
@@ -83,6 +85,34 @@ class PostTest extends TestCase
 
 
     }
+
+    /** @test */
+    public function each_comment_can_have_replies()
+    {
+        $user_id = 1;
+        $commentRepository = app('\App\Repositories\CommentRepositoryEloquent');
+        $comment = $commentRepository->first();
+        $comment_replies_count = count($comment->replies);
+        $comment_id = $comment->id;
+
+        //add new reply
+        $attrs['user_id'] =  $user_id;
+        $attrs['text'] =  'my test reply';
+        $attrs['commentable_type'] =  'App\Entities\Comment';
+        $attrs['commentable_id'] = $comment->id ;
+
+         $commentRepository->create($attrs);
+
+        //refresh the comment object to get the new data
+        $comment = $commentRepository->find($comment_id);
+
+        $this->assertEquals($comment_replies_count+1, count($comment->replies));
+
+    }
+
+
+
+
 
 
 }

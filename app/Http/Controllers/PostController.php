@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Post;
 use App\Repositories\ImagePostRepositoryEloquent;
 use App\Repositories\PostRepositoryEloquent;
 use App\Repositories\VideoPostRepositoryEloquent;
@@ -105,9 +106,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = $this->repository->find($id);
+        //$post = $this->repository->find($id);
+
         return view('social/singlePost', ['post'=>$post]);
     }
 

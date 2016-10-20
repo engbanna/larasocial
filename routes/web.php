@@ -28,6 +28,6 @@ Route::get('/home', 'HomeController@index');
 Route::resource('posts', 'PostController');
 Route::resource('comments', 'CommentController');
 Route::resource('categories', 'categoryController');
-Route::resource('tags', 'tagsController');
+Route::resource('tags', 'tagController');
 
 Route::any('posts/delete/{id}', 'PostController@destroy');

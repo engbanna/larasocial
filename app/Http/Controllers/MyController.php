@@ -13,10 +13,14 @@ class MyController extends Controller
     protected $repository;
     protected $page;
     protected $fields;
+    protected $formFile;
 
     public function __construct()
     {
         $this->middleware('auth');
+        $this->formView = 'form';
+        $this->listView = 'list';
+        $this->showView = 'show';
     }
 
     /**
@@ -27,7 +31,7 @@ class MyController extends Controller
     public function index()
     {
         $objects = $this->repository->orderBy('id', 'asc')->all();
-        return view('cp.list', ['objects'=>$objects, 'fields'=>array_keys($this->fields), 'page'=>$this->page  ]);
+        return view('cp.'.$this->listView , ['objects'=>$objects, 'fields'=>array_keys($this->fields), 'page'=>$this->page  ]);
     }
 
     /**
@@ -37,7 +41,7 @@ class MyController extends Controller
      */
     public function create()
     {
-        return view('cp.form', ['object'=>[], 'fields'=>$this->fields, 'page'=>$this->page  ]);
+        return view('cp.'.$this->formView, ['object'=>[], 'fields'=>$this->fields, 'page'=>$this->page  ]);
     }
 
     /**
@@ -64,7 +68,7 @@ class MyController extends Controller
     public function show($id)
     {
         $object = $this->repository->find($id);
-        return view('cp.show', ['object'=>$object, 'fields'=>$this->fields, 'page'=>$this->page  ]);
+        return view('cp.'.$this->showView, ['object'=>$object, 'fields'=>$this->fields, 'page'=>$this->page  ]);
     }
 
     /**
@@ -76,7 +80,7 @@ class MyController extends Controller
     public function edit($id)
     {
         $object = $this->repository->find($id);
-        return view('cp.form', ['object'=>$object, 'fields'=>$this->fields, 'page'=>$this->page  ]);
+        return view('cp.'.$this->formView, ['object'=>$object, 'fields'=>$this->fields, 'page'=>$this->page  ]);
     }
 
     /**

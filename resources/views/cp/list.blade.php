@@ -26,8 +26,8 @@
                         <td>{{ $object->$field }}</td>
                     @endforeach
                         <td>
-                            <a href="{{ URL::to('categories/'.$object->id.'/edit') }}">Edit</a> |
-                            {!! Form::open(['url' => 'categories/'.$object->id, 'method' => 'DELETE' ]) !!}
+                            <a href="{{ URL::to($page.'/'.$object->id.'/edit') }}">Edit</a> |
+                            {!! Form::open(['url' => $page.'/'.$object->id, 'method' => 'DELETE' ]) !!}
                             {!! Form::submit('Delete', ['class' => 'deleteConfirm']) !!}
                             {!! Form::close() !!}
 
